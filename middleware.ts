@@ -21,7 +21,6 @@ export function middleware(req : NextRequest) {
         if(containsPublicRoute(pathname)) {
             return NextResponse.next()
         } else {
-            console.log("I am hitting up",pathname)
             return NextResponse.redirect(new URL("/account/user/login",req.url))
         }
     }

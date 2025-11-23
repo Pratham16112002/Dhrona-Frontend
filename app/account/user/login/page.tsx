@@ -4,8 +4,14 @@ import { Box, TextField, Typography, Link, Paper, Stack } from '@mui/material';
 import Button from '@mui/material/Button';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { LoginForm } from '@/forms/account/user';
+import { useMutation } from '@tanstack/react-query';
+import { UserloginMutationOptions } from '@/tanStack/mutations/user/user';
+import { useSnackBar } from '@/globalProviders/snackBar';
+import { useRouter } from 'next/navigation';
 
 const UserLoginPage = () => {
+  const {showSuccess} = useSnackBar()
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -16,7 +22,15 @@ const UserLoginPage = () => {
       password: '',
     },
   });
-  const loginFormHandler: SubmitHandler<LoginForm> = (data) => {};
+  const {mutate,isPending} = useMutation(UserloginMutationOptions)
+  const loginFormHandler: SubmitHandler<LoginForm> = (data) => {
+    mutate(data, {
+      onSuccess: () => {
+        showSuccess("Login Successfull")
+        router.replace('/home')
+      }
+    })
+  };
 
   return (
     <Box
@@ -85,6 +99,7 @@ const UserLoginPage = () => {
               type="submit"
               size="large"
               fullWidth
+              loading={isPending}
               sx={{
                 py: 1.3,
                 borderRadius: 2,

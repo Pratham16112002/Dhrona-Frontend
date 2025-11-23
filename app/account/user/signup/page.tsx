@@ -3,10 +3,15 @@ import React from "react";
 import { Box, TextField, Typography, Link, Paper, Stack, Button } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { UserSignupForm } from "@/forms/account/user";
+import { useMutation } from "@tanstack/react-query";
+import { UserSignUpMutationOptions } from "@/tanStack/mutations/user/user";
+import { useSnackBar } from "@/globalProviders/snackBar";
 
 
 
 export default function UserSignupPage() {
+  const {showSuccess} = useSnackBar()
+  const {mutate} = useMutation(UserSignUpMutationOptions)
   const {
     register,
     handleSubmit,
@@ -22,7 +27,11 @@ export default function UserSignupPage() {
   });
 
   const signupHandler: SubmitHandler<UserSignupForm> = (data) => {
-    console.log(data);
+    mutate(data,{
+      onSuccess: () => {
+        showSuccess("We have sen't you a confirmation email. Please check your inbox to verify your account.")
+      }
+    });
   };
 
   return (
