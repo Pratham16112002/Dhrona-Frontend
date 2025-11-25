@@ -20,4 +20,4 @@ const UserSignUpMutationOptions : UseMutationOptions<ApiResponse<null>,ApiError,
     mutationKey : ["user","logout"]
 })
 
-export { UserloginMutationOptions,UserLogoutMutationOptions,UserSignUpMutationOptions}
+export { UserloginMutationOptions,UserLogoutMutationOptions,UserSignUpMutationOptions   }

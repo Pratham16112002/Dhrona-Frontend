@@ -1,11 +1,18 @@
 "use client";
-import React from "react";
+import React, { use } from "react";
 import { Box, TextField, Typography, Link, Paper, Stack, Button } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { MentorLoginForm } from "@/forms/account/mentor";
+import { useMutation } from "@tanstack/react-query";
+import { MentorLoginMutationOptions } from "@/tanStack/mutations/mentor/mentor";
+import { useSnackBar } from "@/globalProviders/snackBar";
+import { useRouter } from "next/navigation";
 
 
 export default function MentorLoginPage() {
+  const {showSuccess} = useSnackBar()
+  const router = useRouter()
+  const {mutate} = useMutation(MentorLoginMutationOptions)
   const {
     register,
     handleSubmit,
@@ -18,7 +25,12 @@ export default function MentorLoginPage() {
   });
 
   const loginHandler: SubmitHandler<MentorLoginForm> = (data) => {
-    console.log("MENTOR LOGIN DATA:", data);
+    mutate(data, {
+      onSuccess: () => {
+        showSuccess("Login Successful")
+         router.replace('/home/mentor')
+      }
+    })
   };
 
   return (

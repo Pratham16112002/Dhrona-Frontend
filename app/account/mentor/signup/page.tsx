@@ -3,10 +3,15 @@ import React from "react";
 import { Box, TextField, Typography, Link, Paper, Stack, Button } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { MentorSignupForm } from "@/forms/account/mentor";
+import { useMutation } from "@tanstack/react-query";
+import { MentorSignUpMutationOptions } from "@/tanStack/mutations/mentor/mentor";
+import { useSnackBar } from "@/globalProviders/snackBar";
 
 
 
 export default function MentorSignupPage() {
+  const {showSuccess} = useSnackBar()
+  const {mutate,isPending} = useMutation(MentorSignUpMutationOptions)
   const {
     register,
     handleSubmit,
@@ -16,16 +21,20 @@ export default function MentorSignupPage() {
       username: "",
       first_name: "",
       last_name: "",
-      experience_year: 0,
-      experience_month: 0,
       bio: "",
       email: "",
       password: "",
     },
   });
 
+
+
   const signupHandler: SubmitHandler<MentorSignupForm> = (data) => {
-    console.log("MENTOR SIGNUP:", data);
+    mutate(data, {
+      onSuccess : () => {
+        showSuccess("Mentor Account Created Successfully, please check your email to verify your account")
+      }
+    })
   };
 
   return (
@@ -94,6 +103,7 @@ export default function MentorSignupPage() {
               {...register("experience_year", {
                 required: "Years of experience is required",
                 min: { value: 0, message: "Cannot be negative" },
+                valueAsNumber : true
               })}
               error={!!errors.experience_year}
               helperText={errors.experience_year?.message}
@@ -109,6 +119,7 @@ export default function MentorSignupPage() {
                 required: "Months of experience is required",
                 min: { value: 0, message: "Cannot be negative" },
                 max: { value: 11, message: "Maximum is 11 months" },
+                valueAsNumber : true
               })}
               error={!!errors.experience_month}
               helperText={errors.experience_month?.message}
@@ -164,6 +175,7 @@ export default function MentorSignupPage() {
             {/* Submit */}
             <Button
               type="submit"
+              disabled={isPending}
               variant="contained"
               fullWidth
               size="large"

@@ -27,7 +27,7 @@ const UserLoginPage = () => {
     mutate(data, {
       onSuccess: () => {
         showSuccess("Login Successfull")
-        router.replace('/home')
+        router.replace('/home/user')
       }
     })
   };

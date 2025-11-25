@@ -11,7 +11,7 @@ import { useSnackBar } from "@/globalProviders/snackBar";
 
 export default function UserSignupPage() {
   const {showSuccess} = useSnackBar()
-  const {mutate} = useMutation(UserSignUpMutationOptions)
+  const {mutate,isPending} = useMutation(UserSignUpMutationOptions)
   const {
     register,
     handleSubmit,
@@ -132,6 +132,7 @@ export default function UserSignupPage() {
               variant="contained"
               fullWidth
               size="large"
+              disabled={isPending}
               sx={{ py: 1.3, borderRadius: 2, textTransform: "none", fontSize: "1rem" }}
             >
               Create Account

@@ -38,9 +38,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AppThemeProvider >
+        <AppThemeProvider>
           <SnackBarProvider>
-
             <ReactQueryProvider >
               {children}
             </ReactQueryProvider>

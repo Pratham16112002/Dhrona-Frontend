@@ -1,11 +1,12 @@
 'use client'
+import { MentorLogoutMutationOptions } from "@/tanStack/mutations/mentor/mentor"
 import { UserLogoutMutationOptions } from "@/tanStack/mutations/user/user"
 import { AppBar, Toolbar, Typography, Box, Button } from "@mui/material"
 import { useMutation } from "@tanstack/react-query"
 import Link from "next/link"
 
-const NavBar = () => {
-    const {mutate} = useMutation(UserLogoutMutationOptions)
+const MentorNavBar = () => {
+    const {mutate} = useMutation(MentorLogoutMutationOptions)
     const logoutHandler = () => {
         mutate()
     }
@@ -19,7 +20,7 @@ const NavBar = () => {
                 </Link>
 
                 <Box sx={{ display: "flex", gap: 1 }}>
-                    <Link href="/account/user/login" style={{ textDecoration: "none" }}>
+                    <Link href="/account/mentor/login" style={{ textDecoration: "none" }}>
                         <Button onClick={logoutHandler} variant="contained" size="small">Logout</Button>
                        </Link>
                 </Box>
@@ -28,4 +29,4 @@ const NavBar = () => {
     )
 }
 
-export default NavBar
+export default MentorNavBar
