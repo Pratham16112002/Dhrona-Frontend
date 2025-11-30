@@ -1,8 +1,8 @@
 import axiosClient from "@/axios/axiosClient";
-import MentorNavBar from "@/components/navbar/mentorNavbar";
 import { Box, Container, Typography } from "@mui/material";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import MentorNavBar from "./components/MentorNavBar";
 
 
 export default async function MentorHomeLayout({ children }: { children: React.ReactNode }) {

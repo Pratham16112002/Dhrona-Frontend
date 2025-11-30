@@ -7,7 +7,7 @@ export default function HomePage() {
     return (
         <>
             {/* Hero Section */}
-            <Container maxWidth="md"  sx={{ py: 8 }}>
+            <Container   sx={{ py: 8   }}>
                 <Box sx={{ textAlign: "center", mb: 6 }}>
                     <Typography
                         component="h1"
@@ -38,7 +38,7 @@ export default function HomePage() {
             </Container>
 
             {/* Features Section */}
-            <Container maxWidth="md" sx={{ py: 6 }}>
+            <Container  sx={{ py: 6 }}>
                 <Typography
                     variant="h5"
                     sx={{ textAlign: "center", fontWeight: 700, mb: 4 }}
@@ -89,7 +89,7 @@ export default function HomePage() {
             </Container>
 
             {/* Secondary CTA Section */}
-            <Container maxWidth="md" sx={{ py: 6, textAlign: "center" }}>
+            <Container  sx={{ py: 6, textAlign: "center" }}>
                 <Box sx={{ py: 4 }}>
                     <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
                         Ready to start your mentoring journey?

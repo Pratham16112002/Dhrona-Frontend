@@ -40,11 +40,11 @@ export default function SearchPage() {
     const {data,isPending,isError,refetch} = useQuery({...queryOptions})
 
     return (
-        <Box sx={{ minHeight: "100vh", bgcolor: "#f5f5f5", p: 6, borderRadius: 3 }}>
-            <Grid container spacing={3}>
+        <Box sx={{  p: 6, borderRadius: 3, }}>
+            <Grid container spacing={8}>
                 <FormProvider {...methods}>
                     {/* FILTER PANEL */}
-                    <Grid item xs={12} md={3}>
+                    <Grid item xs={12} md={3} lg={3}>
                         <MentorFilterBar refetch={refetch}/>
                     </Grid>
 
@@ -57,10 +57,11 @@ export default function SearchPage() {
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "flex-start",
+                            alignItems : 'center',
                             gap: 2,
                         }}
                     >
-                        <Paper sx={{ p: 2, borderRadius: 3, height: '100%' }} elevation={2}>
+                        <Paper  sx={{ width : '100%', p: 2, borderRadius: 3, flex : 1, flexDirection : 'column' , gap : '2rem', height: '100%' }} elevation={2}>
                             <Typography variant="h6" gutterBottom>
                                 Results
                             </Typography>
